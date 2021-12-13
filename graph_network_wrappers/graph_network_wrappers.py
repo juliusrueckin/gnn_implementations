@@ -1,6 +1,7 @@
 import torch
 import torch.nn.functional as F
 
+import constants as const
 from graph_network_wrappers.utils import get_model, get_dataset
 
 
@@ -13,10 +14,10 @@ class GraphNetworkWrapper:
 
     def train(self):
         self.model = self.model
-        optimizer = torch.optim.Adam(self.model.parameters(), lr=0.005, weight_decay=5e-4)
+        optimizer = torch.optim.Adam(self.model.parameters(), lr=const.LEARNING_RATE, weight_decay=const.WEIGHT_DECAY)
 
         self.model.train()
-        for epoch in range(1000):
+        for epoch in range(const.NUM_EPOCHS):
             optimizer.zero_grad()
             out = self.model(self.data)
             loss = F.nll_loss(out[self.data.train_mask], self.data.y[self.data.train_mask])
