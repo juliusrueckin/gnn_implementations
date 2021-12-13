@@ -6,11 +6,13 @@ from graph_network_wrappers.utils import get_model, get_dataset
 
 
 class GraphNetworkWrapper:
-    def __init__(self, model_name: str, dataset_name: str):
+    def __init__(self, model_name: str, dataset_name: str, **kwargs):
         device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
         self.dataset = get_dataset(dataset_name)
         self.data = self.dataset[0].to(device)
-        self.model = get_model(model_name)(self.dataset.num_node_features, self.dataset.num_classes).to(device)
+        self.model = get_model(model_name)(self.dataset.num_node_features, self.dataset.num_classes, **kwargs).to(
+            device
+        )
 
     def train(self):
         self.model = self.model

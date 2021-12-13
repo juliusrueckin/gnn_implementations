@@ -2,7 +2,7 @@ import os
 
 from torch_geometric.datasets import Planetoid
 
-from graph_attention_networks.gat_networks import GAT, GATv2
+from graph_attention_networks.gat_networks import GAT
 from graph_conv_networks.gcn_networks import GCN
 from graph_u_networks.graph_u_networks import GraphUNet
 
@@ -12,8 +12,6 @@ def get_model(model_name: str):
         return GCN
     elif model_name == "GAT":
         return GAT
-    elif model_name == "GATv2":
-        return GATv2
     elif model_name == "GraphUNet":
         return GraphUNet
     else:
