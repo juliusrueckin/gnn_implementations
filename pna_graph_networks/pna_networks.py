@@ -1,6 +1,6 @@
 import torch
 import torch.nn.functional as F
-from torch.nn import Sequential, Linear, ReLU, Dropout, BatchNorm1d
+from torch.nn import Sequential, Linear, ReLU
 from torch_geometric.nn import PNAConv, BatchNorm
 
 import constants as const
@@ -44,10 +44,8 @@ class PNA(torch.nn.Module):
 
         self.mlp_head = Sequential(
             Linear(const.NUM_CHANNELS, int(const.NUM_CHANNELS * 2 / 3)),
-            BatchNorm1d(int(const.NUM_CHANNELS * 2 / 3)),
             ReLU(),
             Linear(int(const.NUM_CHANNELS * 2 / 3), int(const.NUM_CHANNELS / 3)),
-            BatchNorm1d(int(const.NUM_CHANNELS / 3)),
             ReLU(),
             Linear(int(const.NUM_CHANNELS / 3), num_classes),
         )
