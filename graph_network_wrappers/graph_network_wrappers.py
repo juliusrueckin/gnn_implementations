@@ -25,6 +25,7 @@ class GraphNetworkWrapper:
             loss = F.nll_loss(out[self.data.train_mask], self.data.y[self.data.train_mask])
             loss.backward()
             optimizer.step()
+            print(f"EPOCH: {epoch}, LOSS: {round(loss.item(), 3)}")
 
     def evaluate(self):
         self.model.eval()
