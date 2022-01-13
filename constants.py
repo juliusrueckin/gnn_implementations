@@ -1,5 +1,5 @@
 # Training
-LEARNING_RATE = 0.001
+LEARNING_RATE = 0.01
 WEIGHT_DECAY = 5e-4
 NUM_EPOCHS = 100
 
@@ -17,6 +17,6 @@ NUM_HEADS = 8
 # PNA Nets
 AGGREGATORS = ["mean", "std", "sum", "max", "min"]
 SCALERS = ["identity", "amplification", "attenuation"]
-NUM_TOWERS = 8
+NUM_TOWERS = 4
 PRE_LAYERS = 1
 POST_LAYERS = 1
